@@ -1,10 +1,10 @@
 const EMPTY_BOAT = 0;
 
 class Ship {
-    constructor(startingPort) {
+    constructor(Port) {
         this.passengers = EMPTY_BOAT;
-        this.startingPort = startingPort;
-        this.currentPort = startingPort;
+        this.startingPort = Port.name;
+        this.currentPort = Port.name;
         this.sailing = false;
     }
     aboard(incoming) {
@@ -17,10 +17,17 @@ class Ship {
         this.sailing = true;
         this.currentPort = false;
     }
-    dock(destination) {
+    dock(Port) {
         this.sailing = false;
-        this.currentPort = destination;
+        this.currentPort = Port.name;
     }
 };
 
-module.exports = Ship;
+class Port {
+    constructor(name) {
+        this.name = name;
+    };
+};
+module.exports = { 
+    Port, 
+    Ship };

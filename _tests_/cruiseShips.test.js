@@ -1,21 +1,38 @@
-const Ship = require('../source/cruiseShips');
+const {
+    Port, 
+    Ship }  = require('../source/cruiseShips');
 
-describe('The constructor', () => {
+describe('The constructor for Ship', () => {
     it('returns an object instance', () => {
-        expect(new Ship('Malaga')).toBeInstanceOf(Object)
+        expect(new Ship(Port)).toBeInstanceOf(Object)
     })
     it('has a starting port', () => {
-        const malaga = new Ship('Malaga');
-        expect(malaga.startingPort).toBe('Malaga');
+        const MLG = new Port('Malaga')
+        const malaga = new Ship(MLG);
+        
+        expect(malaga.startingPort).toBe(MLG.name);
     })
     it('is empty at the beginning of the journey', () => {
-        const malaga = new Ship('Malaga');
+        const MLG = new Port('Malaga')
+        const malaga = new Ship(MLG);
         expect(malaga.passengers).toEqual(0);
     })
 });
+describe('The constructor for Port', () => {
+    it('makes sure Port class are instantiated objects', () => {
+        expect(new Port('Lisbon')).toBeInstanceOf(Object);
+    })
+    it('makes sure Ports have names', () => {
+        const lisbon = new Port('Lisbon');
+
+        expect(lisbon.name).toBe('Lisbon');
+    })
+})
 describe('The sailing and aboard methods', () =>{
     it('checks the ship is docked/sailing', () =>{
-        const malaga = new Ship('Malaga');
+        const MLG = new Port('Malaga');
+        const LSB = new Port('Lisbon');
+        const malaga = new Ship(MLG);
         
         expect(malaga.sailing).toBe(false);
         
@@ -23,12 +40,13 @@ describe('The sailing and aboard methods', () =>{
         
         expect(malaga.sailing).toBe(true);
 
-        malaga.dock();
+        malaga.dock(LSB);
 
         expect(malaga.sailing).toBe(false);
     })
     it('checks in passengers AND ONLY when docked', () =>{
-        const malaga = new Ship('Malaga');
+        const MLG = new Port('Malaga')
+        const malaga = new Ship(MLG);
 
         expect(malaga.passengers).toEqual(0);
         
@@ -41,20 +59,22 @@ describe('The sailing and aboard methods', () =>{
         expect(() => malaga.aboard(5)).toThrow('Passengers cannot aboard while sailing, dock() first!');
     })
     it('checks current port goes false after setting sail', () => {
-        const malaga = new Ship('Malaga');
+        const MLG = new Port('Malaga')
+        const malaga = new Ship(MLG);
 
         malaga.setSail();
 
         expect(malaga.currentPort).toBe(false);
     })
     it('checks that you can dock in your destination port', () => {
-        const malaga = new Ship('Malaga');
+        const MLG = new Port('Malaga')
+        const LSB = new Port('Lisbon')
+        const malaga = new Ship(MLG);
         
         malaga.setSail();
-
-        malaga.dock('Lisbon');
+        malaga.dock(LSB);
         
-        expect(malaga.currentPort).toBe('Lisbon');
-        expect(malaga.startingPort).toBe('Malaga');
+        expect(malaga.currentPort).toBe(LSB.name);
+        expect(malaga.startingPort).toBe(MLG.name);
     })
 });
