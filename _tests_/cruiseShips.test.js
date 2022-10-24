@@ -78,3 +78,24 @@ describe('The sailing and aboard methods', () =>{
         expect(malaga.startingPort).toBe(MLG.name);
     })
 });
+describe('The itinerary methods', () => {
+    it('checks that you can add stops to itinerary', () => {
+        const MLG = new Port('Malaga');
+        const malaga = new Ship(MLG);
+        const LSB = new Port('Lisbon');
+
+        malaga.addItinerary(LSB);
+
+        expect(malaga.itinerary).toEqual([MLG, LSB]);
+})
+    it('checks that you can take stops off itinerary', () =>{
+        const MLG = new Port('Malaga');
+        const malaga = new Ship(MLG);
+        const LSB = new Port('Lisbon');
+
+        malaga.addItinerary(LSB);
+        malaga.cancelItinerary(LSB);
+
+        expect(malaga.itinerary).toEqual([MLG]);
+    })
+});

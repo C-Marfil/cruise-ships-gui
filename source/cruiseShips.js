@@ -6,6 +6,7 @@ class Ship {
         this.startingPort = Port.name;
         this.currentPort = Port.name;
         this.sailing = false;
+        this.itinerary = [Port];
     }
     aboard(incoming) {
         if(this.sailing){
@@ -20,6 +21,12 @@ class Ship {
     dock(Port) {
         this.sailing = false;
         this.currentPort = Port.name;
+    }
+    addItinerary(Port) {
+        this.itinerary.push(Port);
+    }
+    cancelItinerary(Port) {
+        this.itinerary.pop(Port);
     }
 };
 
