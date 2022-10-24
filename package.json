@@ -1,0 +1,22 @@
+{
+  "name": "cruiseships",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C-Marfil/cruiseShips.git"
+  },
+  "author": "cm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C-Marfil/cruiseShips/issues"
+  },
+  "homepage": "https://github.com/C-Marfil/cruiseShips#readme",
+  "devDependencies": {
+    "jest": "^29.2.1"
+  }
+}
