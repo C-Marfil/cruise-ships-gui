@@ -23,7 +23,7 @@ class Ship {
         if (currentPortIndex === (itinerary.ports.length - 1)) {
             throw new Error('End of itinerary reached');
         }
-
+        this.currentPort.removeShip(this);
         this.sailing = true;
         this.previousPort = this.currentPort;
         this.currentPort = null;
@@ -31,8 +31,11 @@ class Ship {
     dock() {
         const itinerary = this.itinerary;
         const previousPortIndex = itinerary.ports.indexOf(this.previousPort);
+
         this.currentPort = itinerary.ports[previousPortIndex + 1];
         this.sailing = false;
+        this.currentPort.addShip(this);
+
         return `Passengers, welcome to ${this.currentPort}`;
     }
 };

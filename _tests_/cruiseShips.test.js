@@ -11,7 +11,7 @@ describe('The constructor for Ship', () => {
     it('has a starting port', () => {
         const MLG = new Port('Malaga');
         const BCN = new Port('Barcelona');
-        const medLove = new Itinerary(MLG, BCN);
+        const medLove = new Itinerary([MLG, BCN]);
         const laMalagueta = new Ship(medLove);
 
         expect(laMalagueta.startingPort).toEqual(medLove.ports[0]);
@@ -19,13 +19,13 @@ describe('The constructor for Ship', () => {
     it('is empty at the beginning of the journey', () => {
         const MLG = new Port('Malaga');
         const BCN = new Port('Barcelona');
-        const medLove = new Itinerary(MLG, BCN);
+        const medLove = new Itinerary([MLG, BCN]);
         const laMalagueta = new Ship(medLove);
 
         expect(laMalagueta.passengers).toEqual(0);
     })
 });
-describe('The sailing and aboard methods', () =>{
+describe('The sailing and aboard methods', () => {
     it('checks the ship is docked/sailing', () =>{
         const MLG = new Port('Malaga');
         const BCN = new Port('Barcelona');
@@ -96,3 +96,35 @@ describe('The sailing and aboard methods', () =>{
         expect(laMalagueta.startingPort).toBe(MLG);
     })
 });
+describe('The ships enter and leave ports', () => {
+    it('checks a ship gets added to port on instantiation', () => {
+        const MLG = new Port('Malaga');
+        const BCN = new Port('Barcelona');
+        const medLove = new Itinerary([MLG, BCN]);
+        const laMalagueta = new Ship(medLove);
+
+        laMalagueta.setSail();
+        laMalagueta.dock();
+
+        expect(laMalagueta.currentPort.ships).toContain(laMalagueta);
+    })
+    it('checks a ship can leave and dock on a different port', () => {
+        const MLG = new Port('Malaga');
+        const BCN = new Port('Barcelona');
+        const NPL = new Port('Napoli');
+        const medLove = new Itinerary([MLG, BCN, NPL]);
+        const laMalagueta = new Ship(medLove);
+
+        laMalagueta.setSail();
+        laMalagueta.dock();
+
+        expect(laMalagueta.currentPort.ships).toContain(laMalagueta);
+        expect(BCN.ships).toContain(laMalagueta);
+        
+        laMalagueta.setSail();
+        laMalagueta.dock();
+
+        expect(NPL.ships).toContain(laMalagueta);
+        expect(BCN.ships).not.toContain(laMalagueta);
+    })
+})
