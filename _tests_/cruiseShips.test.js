@@ -1,101 +1,98 @@
-const {
-    Port, 
-    Ship }  = require('../source/cruiseShips');
+const Ship = require('../source/cruiseShips');
+const Port = require('../source/port');
+const Itinerary = require('../source/itinerary');
+
+
 
 describe('The constructor for Ship', () => {
     it('returns an object instance', () => {
-        expect(new Ship(Port)).toBeInstanceOf(Object)
+        expect(new Ship(new Itinerary(new Port, new Port))).toBeInstanceOf(Object)
     })
     it('has a starting port', () => {
-        const MLG = new Port('Malaga')
-        const malaga = new Ship(MLG);
-        
-        expect(malaga.startingPort).toBe(MLG.name);
+        const MLG = new Port('Malaga');
+        const BCN = new Port('Barcelona');
+        const medLove = new Itinerary(MLG, BCN);
+        const laMalagueta = new Ship(medLove);
+
+        expect(laMalagueta.startingPort).toEqual(medLove.ports[0]);
     })
     it('is empty at the beginning of the journey', () => {
-        const MLG = new Port('Malaga')
-        const malaga = new Ship(MLG);
-        expect(malaga.passengers).toEqual(0);
+        const MLG = new Port('Malaga');
+        const BCN = new Port('Barcelona');
+        const medLove = new Itinerary(MLG, BCN);
+        const laMalagueta = new Ship(medLove);
+
+        expect(laMalagueta.passengers).toEqual(0);
     })
 });
-describe('The constructor for Port', () => {
-    it('makes sure Port class are instantiated objects', () => {
-        expect(new Port('Lisbon')).toBeInstanceOf(Object);
-    })
-    it('makes sure Ports have names', () => {
-        const lisbon = new Port('Lisbon');
-
-        expect(lisbon.name).toBe('Lisbon');
-    })
-})
 describe('The sailing and aboard methods', () =>{
     it('checks the ship is docked/sailing', () =>{
         const MLG = new Port('Malaga');
-        const LSB = new Port('Lisbon');
-        const malaga = new Ship(MLG);
+        const BCN = new Port('Barcelona');
+        const medLove = new Itinerary([MLG, BCN]);
+        const laMalagueta = new Ship(medLove);
         
-        expect(malaga.sailing).toBe(false);
+        expect(laMalagueta.sailing).toBe(false);
         
-        malaga.setSail();
+        laMalagueta.setSail();
         
-        expect(malaga.sailing).toBe(true);
+        expect(laMalagueta.sailing).toBe(true);
 
-        malaga.dock(LSB);
+        laMalagueta.dock();
 
-        expect(malaga.sailing).toBe(false);
+        expect(laMalagueta.sailing).toBe(false);
     })
     it('checks in passengers AND ONLY when docked', () =>{
-        const MLG = new Port('Malaga')
-        const malaga = new Ship(MLG);
+        const MLG = new Port('Malaga');
+        const BCN = new Port('Barcelona');
+        const NPL = new Port('Naples');
+        const medLove = new Itinerary([MLG, BCN, NPL]);
+        const laMalagueta = new Ship(medLove);
 
-        expect(malaga.passengers).toEqual(0);
+        expect(laMalagueta.passengers).toEqual(0);
         
-        malaga.aboard(300);
+        laMalagueta.aboard(300);
 
-        expect(malaga.passengers).toEqual(300);
+        expect(laMalagueta.passengers).toEqual(300);
 
-        malaga.setSail();
+        laMalagueta.setSail();
 
-        expect(() => malaga.aboard(5)).toThrow('Passengers cannot aboard while sailing, dock() first!');
+        expect(() => laMalagueta.aboard(5)).toThrow('Passengers cannot aboard while sailing, dock() first!');
     })
-    it('checks current port goes false after setting sail', () => {
-        const MLG = new Port('Malaga')
-        const malaga = new Ship(MLG);
+    it('can set sail', () => {
+        const port = new Port('Dover')
+        const port2 = new Port('Lisbon');
+        const dover = new Itinerary([port, port2]);
+        const ship = new Ship(dover);
+        
+        ship.setSail();
+      
+        expect(ship.currentPort).toBeFalsy();
+        expect(ship.previousPort).toBe(dover.ports[0]);
+      });
+    it('checks that you cannot sail past your last destination in itinerary', () => {
+        const MLG = new Port('Malaga');
+        const BCN = new Port('Barcelona');
+        const NPL = new Port('Napoles');
+        const medLove = new Itinerary([MLG, BCN]);
+        const laMalagueta = new Ship(medLove);
 
-        malaga.setSail();
+        laMalagueta.setSail();
+        laMalagueta.dock();
 
-        expect(malaga.currentPort).toBe(false);
+        expect(() => laMalagueta.setSail()).toThrowError('End of itinerary reached');
     })
     it('checks that you can dock in your destination port', () => {
-        const MLG = new Port('Malaga')
-        const LSB = new Port('Lisbon')
-        const malaga = new Ship(MLG);
-        
-        malaga.setSail();
-        malaga.dock(LSB);
-        
-        expect(malaga.currentPort).toBe(LSB.name);
-        expect(malaga.startingPort).toBe(MLG.name);
-    })
-});
-describe('The itinerary methods', () => {
-    it('checks that you can add stops to itinerary', () => {
         const MLG = new Port('Malaga');
-        const malaga = new Ship(MLG);
-        const LSB = new Port('Lisbon');
-
-        malaga.addItinerary(LSB);
-
-        expect(malaga.itinerary).toEqual([MLG, LSB]);
-})
-    it('checks that you can take stops off itinerary', () =>{
-        const MLG = new Port('Malaga');
-        const malaga = new Ship(MLG);
-        const LSB = new Port('Lisbon');
-
-        malaga.addItinerary(LSB);
-        malaga.cancelItinerary(LSB);
-
-        expect(malaga.itinerary).toEqual([MLG]);
+        const BCN = new Port('Barcelona');
+        const NPL = new Port('Napoles');
+        const medLove = new Itinerary([MLG, BCN, NPL]);
+        const laMalagueta = new Ship(medLove);
+        
+        laMalagueta.setSail();
+        laMalagueta.dock();
+        
+        expect(laMalagueta.currentPort).toBe(BCN);
+        expect(laMalagueta.startingPort).toBe(MLG);
     })
 });

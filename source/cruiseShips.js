@@ -1,12 +1,14 @@
 const EMPTY_BOAT = 0;
-
+let STARTING_PORT = 0;
+let PORTN = 0;
 class Ship {
-    constructor(Port) {
+    constructor(Itinerary) {
+        this.itinerary = Itinerary;
         this.passengers = EMPTY_BOAT;
-        this.startingPort = Port.name;
-        this.currentPort = Port.name;
+        this.startingPort = Itinerary.ports[STARTING_PORT];
+        this.previousPort = Itinerary.ports[PORTN];
+        this.currentPort = Itinerary.ports[PORTN];
         this.sailing = false;
-        this.itinerary = [Port];
     }
     aboard(incoming) {
         if(this.sailing){
@@ -15,26 +17,25 @@ class Ship {
         this.passengers += incoming;
     }
     setSail() {
+        const itinerary = this.itinerary;
+        const currentPortIndex = itinerary.ports.indexOf(this.currentPort);
+
+        if (currentPortIndex === (itinerary.ports.length - 1)) {
+            throw new Error('End of itinerary reached');
+        }
+
         this.sailing = true;
-        this.currentPort = false;
+        this.previousPort = this.currentPort;
+        this.currentPort = null;
     }
-    dock(Port) {
+    dock() {
+        const itinerary = this.itinerary;
+        const previousPortIndex = itinerary.ports.indexOf(this.previousPort);
+        this.currentPort = itinerary.ports[previousPortIndex + 1];
         this.sailing = false;
-        this.currentPort = Port.name;
-    }
-    addItinerary(Port) {
-        this.itinerary.push(Port);
-    }
-    cancelItinerary(Port) {
-        this.itinerary.pop(Port);
+        return `Passengers, welcome to ${this.currentPort}`;
     }
 };
 
-class Port {
-    constructor(name) {
-        this.name = name;
-    };
-};
-module.exports = { 
-    Port, 
-    Ship };
+
+module.exports = Ship;
