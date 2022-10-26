@@ -1,6 +1,7 @@
 const EMPTY_BOAT = 0;
 let STARTING_PORT = 0;
 let PORTN = 0;
+
 class Ship {
     constructor(Itinerary) {
         this.itinerary = Itinerary;

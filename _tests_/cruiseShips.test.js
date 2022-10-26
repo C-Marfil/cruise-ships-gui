@@ -14,10 +14,12 @@ it('returns an object instance', () => {
         let medLove;
         let laMalagueta;
         beforeEach(() => {
-            MLG = new Port('Malaga');
-            BCN = new Port('Barcelona');
-            NPL = new Port('Napoli');
-            medLove = new Itinerary([MLG, BCN, NPL]);;
+            MLG = { removeShip: jest.fn()};
+            BCN = { addShip: jest.fn(),
+                    removeShip: jest.fn(),
+                    ships: laMalagueta};
+            NPL = { addShip: jest.fn()};
+            medLove = {ports:[MLG, BCN, NPL]};
             laMalagueta = new Ship(medLove);
         });
     it('has a starting port', () => {
@@ -81,21 +83,20 @@ it('returns an object instance', () => {
         laMalagueta.setSail();
         laMalagueta.dock();
 
-        expect(laMalagueta.currentPort.ships).toContain(laMalagueta);
+        expect(BCN.addShip).toHaveBeenCalled();
         })
     it('checks a ship can leave and dock on a different port', () => {
 
         laMalagueta.setSail();
         laMalagueta.dock();
 
-        expect(laMalagueta.currentPort.ships).toContain(laMalagueta);
-        expect(BCN.ships).toContain(laMalagueta);
+        expect(BCN.addShip).toHaveBeenCalled();
         
         laMalagueta.setSail();
         laMalagueta.dock();
 
-        expect(NPL.ships).toContain(laMalagueta);
-        expect(BCN.ships).not.toContain(laMalagueta);
+        expect(NPL.addShip).toHaveBeenCalled();
+        expect(BCN.removeShip).toHaveBeenCalled();
         })
     })
 });
