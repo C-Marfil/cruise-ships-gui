@@ -83,20 +83,20 @@ it('returns an object instance', () => {
         laMalagueta.setSail();
         laMalagueta.dock();
 
-        expect(BCN.addShip).toHaveBeenCalled();
+        expect(BCN.addShip).toHaveBeenCalledWith(laMalagueta);
         })
     it('checks a ship can leave and dock on a different port', () => {
 
         laMalagueta.setSail();
         laMalagueta.dock();
 
-        expect(BCN.addShip).toHaveBeenCalled();
+        expect(BCN.addShip).toHaveBeenCalledWith(laMalagueta);
         
         laMalagueta.setSail();
         laMalagueta.dock();
 
-        expect(NPL.addShip).toHaveBeenCalled();
-        expect(BCN.removeShip).toHaveBeenCalled();
+        expect(NPL.addShip).toHaveBeenCalledWith(laMalagueta);
+        expect(BCN.removeShip).toHaveBeenCalledWith(laMalagueta);
         })
     })
 });
