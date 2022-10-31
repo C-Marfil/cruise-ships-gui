@@ -32,8 +32,27 @@ body {
 }
 
 #ship {
-    width: auto;
-    height: auto;
+    width:128px;
+    height:64px;
     position: absolute;
     background-image: url('../images/ship.png');
+}
+
+#sailbutton {
+    font-family: 'Great Vibes', cursive;
+    width: 100%;
+    height:30px;
+    margin-top: 11%;
+    background-color: rgb(255, 123, 0);
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    border-bottom: 10px solid #d76f7f;
+    border-top: 3px solid rgb(249, 179, 0);
+}
+
+#sailbutton:focus {
+    background-color: pink;
+    font-size: 0px;
 }
