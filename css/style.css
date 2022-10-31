@@ -30,3 +30,10 @@ body {
     background-image: url('../images/port.png');
     
 }
+
+#ship {
+    width: auto;
+    height: auto;
+    position: absolute;
+    background-image: url('../images/ship.png');
+}

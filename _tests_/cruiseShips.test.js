@@ -5,7 +5,7 @@ const Itinerary = require('../source/itinerary');
 describe('The constructor for Ship', () => {
 it('returns an object instance', () => {
         expect(new Ship(new Itinerary(new Port, new Port))).toBeInstanceOf(Object)
-   
+
 });  
     describe('Declare ports, itinerary and ship', () => {
         let MLG;

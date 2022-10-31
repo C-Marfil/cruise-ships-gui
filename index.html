@@ -13,6 +13,7 @@
    <div id="viewport">
         <div id="ports">
         </div>
+        <div id="ship"> </div>
    </div>
    
    <script src="source/controller.js"></script>
@@ -26,7 +27,11 @@
       new Port('San Juan'),
       new Port('Amber Cove')
     ]);
+    
+    
     controller.renderPorts(itinerary.ports);
+    controller.renderShip(ship);
+    
    </script>
 
 </body>
