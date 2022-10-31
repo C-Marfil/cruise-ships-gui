@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruise Ships</title>
+    <link rel="stylesheet" href="css/normalize.ss">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+   <div id="viewport">
+        <div id="ports">
+        </div>
+   </div>
+   
+   <script src="source/controller.js"></script>
+   <script src="source/port.js"></script>
+   <script src="source/itinerary.js"></script>
+   <script>
+    const controller = new Controller();
+    const itinerary = new Itinerary([
+      new Port('New York City'), 
+      new Port('Grand Turk'),
+      new Port('San Juan'),
+      new Port('Amber Cove')
+    ]);
+    controller.renderPorts(itinerary.ports);
+   </script>
+
+</body>
+</html>

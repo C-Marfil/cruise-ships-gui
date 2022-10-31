@@ -1,3 +1,4 @@
+(function exportShip() {
 const EMPTY_BOAT = 0;
 let STARTING_PORT = 0;
 let PORTN = 0;
@@ -40,6 +41,9 @@ class Ship {
         return `Passengers, welcome to ${this.currentPort}`;
     }
 };
-
-
-module.exports = Ship;
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Ship;
+    } else {
+     window.Ship = Ship;
+    }
+}());
