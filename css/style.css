@@ -1,41 +1,40 @@
+/* GENERAL STYLES */
 
 html, body {
     height: 100%;
 }
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
-    
+    background-color: black;    
 }
+
+/* VIEWPORT STYLES */
+
 #viewport {
     width: 640px;
     height: 256px;
     position: relative;
     overflow-x: auto;
     background-image: url('../images/water0.png');
-
 }
+
+/* ELEMENTS WITHIN VIEWPORT STYLES */
+
 #ports {
     width: 0px;
     margin-top: 96px;
     display: flex;
     justify-content:space-around;
-    
 }
 #ports > .port {
     width: 64px;
     height: 32px;
     background-image: url('../images/port.png');
-    
 }
-#sailAwayButton {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 1200px;
-}
+
 #ship {
     width:128px;
     height:64px;
@@ -43,6 +42,14 @@ body {
     background-image: url('../images/ship.png');
 }
 
+/* BUTTON DIV AND BUTTON STYLES */
+
+#sailAwayButton {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 1200px;
+}
 #sailbutton {
     font-family: 'Great Vibes', cursive;
     border: 1;
@@ -56,23 +63,16 @@ body {
     font-size: 20px;
     left: 0;
     width: 640px;
-    
 }
 
-#sailbutton:focus {
-    border: 0;
-    background-color: rgb(255, 98, 0);
-    border-bottom: 4px solid rgb(244, 101, 156);
-    color: white;
-    padding: 10px 20px;
-    position: sticky;
-    text-align: center;
-    bottom: 0;
-    font-size: 20px;
+/* MESSAGE DIV AND MESSAGE STYLES */
+
+#divMessage {
+    position: absolute;
+    bottom: 15;
     left: 0;
-    width: 100%;
+    width: 1200px;
 }
-
 #message {
     font-family: 'Great Vibes', cursive;
     border: 1;
@@ -89,9 +89,3 @@ body {
     background-image: url('../images/sunset.jpeg')
 }
 
-#divMessage {
-    position: absolute;
-    bottom: 15;
-    left: 0;
-    width: 1200px;
-}
