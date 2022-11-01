@@ -30,7 +30,12 @@ body {
     background-image: url('../images/port.png');
     
 }
-
+#sailAwayButton {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 1200px;
+}
 #ship {
     width:128px;
     height:64px;
@@ -40,19 +45,53 @@ body {
 
 #sailbutton {
     font-family: 'Great Vibes', cursive;
-    width: 100%;
-    height:30px;
-    margin-top: 11%;
-    background-color: rgb(255, 123, 0);
+    border: 1;
+    border-bottom: 4px solid rgb(244, 101, 156);
     color: white;
-    font-size: 30px;
+    background-color: rgb(255, 98, 0);
+    padding: 10px 20px;
     text-align: center;
-    position: absolute;
-    border-bottom: 10px solid #d76f7f;
-    border-top: 3px solid rgb(249, 179, 0);
+    position: sticky;
+    bottom: 0;
+    font-size: 20px;
+    left: 0;
+    width: 640px;
+    
 }
 
 #sailbutton:focus {
-    background-color: pink;
-    font-size: 0px;
+    border: 0;
+    background-color: rgb(255, 98, 0);
+    border-bottom: 4px solid rgb(244, 101, 156);
+    color: white;
+    padding: 10px 20px;
+    position: sticky;
+    text-align: center;
+    bottom: 0;
+    font-size: 20px;
+    left: 0;
+    width: 100%;
+}
+
+#message {
+    font-family: 'Great Vibes', cursive;
+    border: 1;
+    border-bottom: 4px solid rgb(244, 101, 156);
+    color: white;
+    background-color: rgb(255, 98, 0);
+    padding: 10px 20px;
+    text-align: center;
+    position: sticky;
+    font-size: 27px;
+    bottom: 0;
+    left: 0;
+    width: 640px;
+    background-image: url('../images/sunset.jpeg')
+}
+
+#divMessage {
+    position: absolute;
+    bottom: 15;
+    left: 0;
+    width: 1200px;
 }

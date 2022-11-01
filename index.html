@@ -10,14 +10,19 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+
 <body>
    <div id="viewport">
+     <div id="divMessage">
+     </div>
         <div id="ports">
         </div>
         <div id="ship"> </div>
-        <button id="sailbutton">
+        <div id="sailAwayButton">
+            <button id="sailbutton">
             Sail away!
-        </button>
+            </button>
+        </div>
    </div>
    
    <script src="source/controller.js"></script>
@@ -25,7 +30,7 @@
    <script src="source/itinerary.js"></script>
    <script src="source/cruiseShips.js"></script>
    <script>
-    const controller = new Controller();
+    
     const itinerary = new Itinerary([
       new Port('New York City'), 
       new Port('Grand Turk'),
@@ -33,6 +38,7 @@
       new Port('Amber Cove')
     ]);
     const ship = new Ship(itinerary);
+    const controller = new Controller(ship);
     
     controller.renderPorts(itinerary.ports);
     controller.renderShip(ship);
