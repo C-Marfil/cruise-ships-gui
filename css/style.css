@@ -8,6 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-flow: column;
     background-color: black;    
 }
 
@@ -89,3 +90,34 @@ body {
     background-image: url('../images/sunset.jpeg')
 }
 
+#headsUpNext {
+    font-family: 'Great Vibes', cursive;
+    border: 1;
+    border-bottom: 4px solid rgb(244, 101, 156);
+    color: white;
+    background-color: rgb(255, 98, 0);
+    padding: 10px 20px;
+    text-align: center;
+    position: sticky;
+    font-size: 27px;
+    bottom: 0;
+    left: 0;
+    width: 640px;
+    background-image: url('../images/sunset.jpeg')
+}
+
+#headsUpCurrent {
+    font-family: 'Great Vibes', cursive;
+    border: 1;
+    border-bottom: 4px solid rgb(244, 101, 156);
+    color: white;
+    background-color: rgb(255, 98, 0);
+    padding: 10px 20px;
+    text-align: center;
+    position: sticky;
+    font-size: 27px;
+    bottom: 0;
+    left: 0;
+    width: 640px;
+    background-image: url('../images/sunset.jpeg')
+}

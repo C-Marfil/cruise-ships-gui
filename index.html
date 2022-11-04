@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <p id="headsUpCurrent"></p>
+    <p id="headsUpNext"></p>
+    
    <div id="viewport">
     <!-- This div is to render the messages-->
         <div id="divMessage"></div> 
@@ -45,6 +48,7 @@
     
     controller.renderPorts(itinerary.ports);
     controller.renderShip(ship);
+    controller.headsUp();
    </script>
    
 </body>

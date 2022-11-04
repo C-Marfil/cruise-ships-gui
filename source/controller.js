@@ -2,7 +2,7 @@
     function Controller (ship) {
         this.ship = ship;
         this.initialiseSea();
-
+    
         document.querySelector('#sailbutton').addEventListener('click', () => {
             this.setSail();
     });
@@ -14,15 +14,15 @@ Controller.prototype = {
             'images/water0.png',
             'images/water1.png',
         ];
+    let backgroundIndex = 0;
 
-        let backgroundIndex = 0;
-
-        window.setInterval(() => {
-            console.log('Hello');
-            document.querySelector('#viewport').style.backgroundImage = `url('${backgrounds[backgroundIndex % backgrounds.length]}')`;
-            backgroundIndex += 1;
-        }, 1000);
+    window.setInterval(() => {
+        console.log('Hello');
+        document.querySelector('#viewport').style.backgroundImage = `url('${backgrounds[backgroundIndex % backgrounds.length]}')`;
+        backgroundIndex += 1;
+    }, 1000);
     },
+
     renderPorts(ports) {
         const portsElement = document.querySelector('#ports');
         portsElement.style.width = '0px';
@@ -30,7 +30,6 @@ Controller.prototype = {
         ports.forEach((port, index) => {
             const newPortElement = document.createElement('div');
             newPortElement.className = 'port';
-
             newPortElement.dataset.portName = port.name;
             newPortElement.dataset.portIndex = index;
 
@@ -48,7 +47,7 @@ Controller.prototype = {
         if (!nextPortElement) {
             return this.renderMessage(`This is the end, hope you had a great journey`);
         }
-
+        this.headsUp();
         this.renderMessage(`Now departing ${ship.currentPort.name}`);
 
         const shipElement = document.querySelector('#ship');
@@ -80,9 +79,23 @@ Controller.prototype = {
         newMessageElement.innerHTML = message;
 
         divMessage.appendChild(newMessageElement);
+        
         setTimeout(() => {
             divMessage.removeChild(newMessageElement);
         }, 3000);
+    },
+
+    headsUp() {
+    const ship = this.ship;
+    const itinerary = this.ship.itinerary;
+    const headsUpCurrent = document.querySelector('#headsUpCurrent');
+    const headsUpNext = document.querySelector('#headsUpNext');
+    const currentPort = ship.currentPort.name;
+    const currentPortIndex = itinerary.ports.indexOf(ship.currentPort);
+    const nextPort = itinerary.ports[currentPortIndex + 1].name;
+
+    headsUpCurrent.innerHTML = `Current Port: ${currentPort}`;
+    headsUpNext.innerHTML = `Next Port: ${nextPort}`;
     }
 };
 
