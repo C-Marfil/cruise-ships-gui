@@ -11,9 +11,16 @@
 </head>
 
 <body>
+    <form id="form">
+        <p>Add Port</p>
+        <input id="portName" type="text" placeholder="Port name here...">
+        <input id="newIti" type="submit">
+        <p id="nope"></p>
+        <input type="submit" id="submit">
+    </form>
     <p id="headsUpCurrent"></p>
     <p id="headsUpNext"></p>
-    
+
    <div id="viewport">
     <!-- This div is to render the messages-->
         <div id="divMessage"></div> 
@@ -36,20 +43,36 @@
    <script src="source/itinerary.js"></script>
    <script src="source/cruiseShips.js"></script>
    
-   <script> 
-    const itinerary = new Itinerary([
-      new Port('New York City'), 
-      new Port('Grand Turk'),
-      new Port('San Juan'),
-      new Port('Amber Cove')
-    ]);
-    const ship = new Ship(itinerary);
-    const controller = new Controller(ship);
-    
-    controller.renderPorts(itinerary.ports);
-    controller.renderShip(ship);
-    controller.headsUp();
-   </script>
+    <script> 
+        
+const portName = document.querySelector('#portName');
+const addPort = document.querySelector('#newPort');
+const newIti = document.querySelector('#newIti');
+const error = document.querySelector('#nope');
+const form = document.querySelector('#form');
+const itinerary = new Itinerary();
+
+form.addEventListener("submit", (event) => {
+    const newPort = new Port(portName.value);
+    console.log(newPort);
+    itinerary.ports.push(newPort);
+    console.log(itinerary);
+
+    event.preventDefault();
+});
+
+newIti.addEventListener('click', (event) => {
+    if (itinerary.ports < 2) {
+        return alert('nope');
+    } else {
+        const ship = new Ship(itinerary);
+        const controller = new Controller(ship);
+        controller.renderPorts(itinerary.ports);
+        controller.renderShip();
+        controller.headsUp();
+    }
+});
+    </script>
    
 </body>
 </html>

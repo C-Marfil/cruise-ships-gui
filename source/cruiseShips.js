@@ -1,15 +1,12 @@
 (function exportShip() {
-const EMPTY_BOAT = 0;
-let STARTING_PORT = 0;
-let PORTN = 0;
 
 class Ship {
     constructor(Itinerary) {
         this.itinerary = Itinerary;
-        this.passengers = EMPTY_BOAT;
-        this.startingPort = Itinerary.ports[STARTING_PORT];
-        this.previousPort = Itinerary.ports[PORTN];
-        this.currentPort = Itinerary.ports[PORTN];
+        this.passengers = 0;
+        this.startingPort = Itinerary.ports[0];
+        this.previousPort = Itinerary.ports[0];
+        this.currentPort = Itinerary.ports[0];
         this.sailing = false;
     }
     aboard(incoming) {
