@@ -12,11 +12,12 @@
 
 <body>
     <form id="form">
-        <p>Add Port</p>
+        <p>Please add at least 2 ports before creating Itinerary</p>
         <input id="portName" type="text" placeholder="Port name here...">
-        <input id="newIti" type="submit">
-        <p id="nope"></p>
-        <input type="submit" id="submit">
+        <br>
+        <input type="submit" id="submit" value="Add Port">
+        <input id="newIti" value='Create Itinerary' type="button">
+        
     </form>
     <p id="headsUpCurrent"></p>
     <p id="headsUpNext"></p>
@@ -53,12 +54,16 @@ const form = document.querySelector('#form');
 const itinerary = new Itinerary();
 
 form.addEventListener("submit", (event) => {
+    if (portName.value === '') {
+        return alert('Please add a port');
+    } else {
     const newPort = new Port(portName.value);
     console.log(newPort);
     itinerary.ports.push(newPort);
     console.log(itinerary);
-
+    alert (`${newPort.name} added`);
     event.preventDefault();
+    };
 });
 
 newIti.addEventListener('click', (event) => {
@@ -70,6 +75,7 @@ newIti.addEventListener('click', (event) => {
         controller.renderPorts(itinerary.ports);
         controller.renderShip();
         controller.headsUp();
+        alert (`Here we go!`);
     }
 });
     </script>
