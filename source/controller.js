@@ -56,8 +56,8 @@ Controller.prototype = {
             if (shipLeft === (nextPortElement.offsetLeft - 32)) {
                 ship.setSail();
                 ship.dock();
+                this.headsUp();
                 this.renderMessage(`Now arrived at ${ship.currentPort.name}`);
-
                 clearInterval(sailInterval);
             }
         shipElement.style.left = `${shipLeft + 1}px`;
@@ -90,12 +90,17 @@ Controller.prototype = {
     const itinerary = this.ship.itinerary;
     const headsUpCurrent = document.querySelector('#headsUpCurrent');
     const headsUpNext = document.querySelector('#headsUpNext');
-    const currentPort = ship.currentPort.name;
+    const currentPortName = ship.currentPort.name;
     const currentPortIndex = itinerary.ports.indexOf(ship.currentPort);
-    const nextPort = itinerary.ports[currentPortIndex + 1].name;
+    const nextPort = itinerary.ports[currentPortIndex + 1];
 
-    headsUpCurrent.innerHTML = `Current Port: ${currentPort}`;
-    headsUpNext.innerHTML = `Next Port: ${nextPort}`;
+    if (!nextPort) {
+        headsUpCurrent.innerHTML = `Current Port: ${currentPortName}`;
+        headsUpNext.innerHTML = `END OF LINE`;
+    } else {
+    headsUpCurrent.innerHTML = `Current Port: ${currentPortName}`;
+    headsUpNext.innerHTML = `Next Port: ${nextPort.name}`;
+    };
     }
 };
 
