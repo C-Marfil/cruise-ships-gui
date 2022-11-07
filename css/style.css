@@ -5,6 +5,7 @@ html, body {
 }
 
 body {
+    font-family: 'Press Start 2P', cursive;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +44,7 @@ body {
     background-image: url('../images/ship.png');
 }
 
-/* BUTTON DIV AND BUTTON STYLES */
+/* BUTTON DIV AND FORM / BUTTON STYLES */
 
 #sailAwayButton {
     position: absolute;
@@ -52,7 +53,7 @@ body {
     width: 1200px;
 }
 #sailbutton {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Press Start 2P', cursive;
     border: 1;
     border-bottom: 4px solid rgb(244, 101, 156);
     color: white;
@@ -66,7 +67,56 @@ body {
     width: 640px;
 }
 
+form {
+    background-color: rgb(0, 0, 0);
+    border-radius: 10%;
+    width:100;
+    height:100;
+    display: flex;
+    flex-flow: column;
+    background-image: url('../images/sunsetForm.png');
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+
+#portName {
+    font-family: 'Press Start 2P', cursive;
+    width: 30%;
+    align-self: start;
+    margin-left: 15%;
+    margin-bottom: 7%;
+    color:white;
+    background-color: black;
+}
+#submit {
+    font-family: 'Press Start 2P', cursive;
+    width: 25%;
+    align-self: end;
+    color:white;
+    background-color: black;
+}
+#newIti {
+    font-family: 'Press Start 2P', cursive;
+    width: 40%;
+    font-size: 11px;
+    align-self: end;
+    color:white;
+    background-color: black;
+}
+#instructions {
+    width: 30%;
+    font-size: 10px;
+    text-align: center;
+    align-self: end;
+    color:white;
+    padding-left: 0%;
+}
+
+
+
 /* MESSAGE DIV AND MESSAGE STYLES */
+
+
 
 #divMessage {
     position: absolute;
@@ -74,8 +124,9 @@ body {
     left: 0;
     width: 1200px;
 }
+
 #message {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Press Start 2P', cursive;
     border: 1;
     border-bottom: 4px solid rgb(244, 101, 156);
     color: white;
@@ -90,41 +141,54 @@ body {
     background-image: url('../images/sunset.jpeg')
 }
 
+#headsupmessages {
+    display:flex;
+}
+
 #headsUpNext {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Press Start 2P', cursive;
     border: 1;
     border-bottom: 4px solid rgb(244, 101, 156);
+    border-radius: 100%;
     color: white;
     background-color: rgb(255, 98, 0);
     padding: 10px 20px;
     text-align: center;
     position: sticky;
-    font-size: 27px;
+    font-size: 20px;
     bottom: 0;
     left: 0;
-    width: 640px;
+    width: 400px;
     background-image: url('../images/sunset.jpeg')
 }
 
 #headsUpCurrent {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Press Start 2P', cursive;
     border: 1;
     border-bottom: 4px solid rgb(244, 101, 156);
     color: white;
+    border-radius: 100%;
     background-color: rgb(255, 98, 0);
     padding: 10px 20px;
     text-align: center;
     position: sticky;
-    font-size: 27px;
+    font-size: 20px;
     bottom: 0;
     left: 0;
-    width: 640px;
+    width: 400px;
     background-image: url('../images/sunset.jpeg')
 }
 
-form {
-    background-color: white;
-    border-radius: 10%;
-    display: flex;
-    flex-flow: column;
+/* AUDIO CONTROLS */
+#play {
+    font-family: 'Press Start 2P', cursive;
+    align-self: start;
+    background-color: black;
+    color: white;
+}
+#pause {
+    font-family: 'Press Start 2P', cursive;
+    align-self: start;
+    background-color: black;
+    color: white;
 }

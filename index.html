@@ -4,24 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Cruise Ships</title>
     <link rel="stylesheet" href="css/normalize.ss">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <audio autoplay id="enya">
+        <source src="./audio/Enya - Orinoco Flow (Sail Away) (Raxlen Slice 8 Bit Chiptune Remix).mp3" type="audio/mpeg">
+    </audio>
+    <button id='play' onclick="document.getElementById('enya').play()">Play An 8-bit Cover of Enya's Orinocco Flow</button> 
+    <button id='pause' onclick="document.getElementById('enya').pause()">Pause Music</button> 
     <form id="form">
-        <p>Please add at least 2 ports before creating Itinerary</p>
+        <p id="instructions">1 - Write the name of a port and click Add Port.</p>
+        <p id="instructions">2 - Click on Create Itinerary.</p>
+        <p id="instructions">3 - Click on Sail Away to commence your journey!.</p>
         <input id="portName" type="text" placeholder="Port name here...">
         <br>
         <input type="submit" id="submit" value="Add Port">
         <input id="newIti" value='Create Itinerary' type="button">
         
     </form>
+    <div id="headsupmessages">
     <p id="headsUpCurrent"></p>
     <p id="headsUpNext"></p>
-
+    </div>
    <div id="viewport">
     <!-- This div is to render the messages-->
         <div id="divMessage"></div> 
@@ -67,8 +75,8 @@ form.addEventListener("submit", (event) => {
 });
 
 newIti.addEventListener('click', (event) => {
-    if (itinerary.ports < 2) {
-        return alert('nope');
+    if (itinerary.ports.length < 2) {
+        return alert('Please add at least 2 ports to the Itinerary');
     } else {
         const ship = new Ship(itinerary);
         const controller = new Controller(ship);
