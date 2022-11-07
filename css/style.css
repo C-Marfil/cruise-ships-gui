@@ -81,9 +81,9 @@ form {
 
 #portName {
     font-family: 'Press Start 2P', cursive;
-    width: 30%;
+    width: 40%;
     align-self: start;
-    margin-left: 15%;
+    margin-left: 10%;
     margin-bottom: 7%;
     color:white;
     background-color: black;
@@ -134,7 +134,7 @@ form {
     padding: 10px 20px;
     text-align: center;
     position: sticky;
-    font-size: 27px;
+    font-size: 18px;
     bottom: 0;
     left: 0;
     width: 640px;
@@ -155,7 +155,7 @@ form {
     padding: 10px 20px;
     text-align: center;
     position: sticky;
-    font-size: 20px;
+    font-size: 17px;
     bottom: 0;
     left: 0;
     width: 400px;
@@ -172,7 +172,7 @@ form {
     padding: 10px 20px;
     text-align: center;
     position: sticky;
-    font-size: 20px;
+    font-size: 17px;
     bottom: 0;
     left: 0;
     width: 400px;
